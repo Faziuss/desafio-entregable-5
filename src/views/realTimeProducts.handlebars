@@ -1,38 +1,38 @@
 <h1>Productos</h1>
 
 <div id="productsContainer">
-        {{#each products}}
-        <div data-id={{this.id}}>
-        <li>{{this.name}}</li>
-        <li>{{this.stock}}</li> 
-        <li>{{this.description}}</li>
-        <button onclick="removeProduct({{this.id}})">Eliminar Producto</button>
-        </div>
-        {{/each}}
+  {{#each products}}
+    <div data-id={{this.id}}>
+      <li>{{this.name}}</li>
+      <li>{{this.stock}}</li>
+      <li>{{this.description}}</li>
+      <button onclick="removeProduct({{this.id}})">Eliminar Producto</button>
+    </div>
+  {{/each}}
 </div>
+
 <h1>Agregar Producto</h1>
 
 <form id="formProduct">
-    <div>
-        <label for="name">Name</label>
-        <input id="name" type="text" name="name">
-    </div>
-    <br>
-      <div>
-        <label for="name" >Stock</label>
-        <input id="stock" type="number" name="stock">
-    </div>
-    <br>
-      <div>
-        <label for="name">Description</label>
-        <input id="description" type="text" name="description">
-    </div>
-    <br>
-    <button>Agregar Producto</button>
+  <div>
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" />
+  </div>
+  <br />
+  <div>
+    <label for="name">Stock</label>
+    <input id="stock" type="number" name="stock" />
+  </div>
+  <br />
+  <div>
+    <label for="name">Description</label>
+    <input id="description" type="text" name="description" />
+  </div>
+  <br />
+  <button>Agregar Producto</button>
 </form>
 
-
-<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/styles.css" />
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/products.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

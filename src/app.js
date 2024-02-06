@@ -21,19 +21,17 @@ app.set("view engine", "handlebars");
 
 app.use(express.static(`${__dirname}/public`));
 
-app.use("/", homeRouter)
+app.use("/", homeRouter);
 app.use("/realtimeproducts", viewsRouter);
 
 const httpServer = app.listen(port, () =>
   console.log(`Running on port ${port}`)
 );
 
-export const products = [
-    
-];
+export const products = [];
 
 const io = new Server(httpServer);
-app.set("io", io)
+app.set("io", io);
 
 io.on("connection", (socket) => {
   console.log(`cliente conectado, id ${socket.id}`);

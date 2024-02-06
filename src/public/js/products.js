@@ -6,6 +6,7 @@ const formProduct = d.getElementById("formProduct");
 
 formProduct.addEventListener("submit", async (e) => {
   e.preventDefault();
+  try {
 
   const name = d.getElementById("name").value;
   const stock = d.getElementById("stock").value;
@@ -13,12 +14,15 @@ formProduct.addEventListener("submit", async (e) => {
 
   await axios.post("/realtimeproducts/add", {
     name,
-    stock,
-    description,
-    id: 5,
+    stock: stock,
+    description
   });
 
   formProduct.reset();
+  } catch (error) {
+    console.log(error);
+  }
+  
 });
 
 const productsContainer = d.getElementById("productsContainer");
