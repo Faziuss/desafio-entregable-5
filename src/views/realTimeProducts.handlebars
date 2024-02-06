@@ -4,15 +4,15 @@
         {{#each products}}
         <div data-id={{this.id}}>
         <li>{{this.name}}</li>
-        <li>{{this.stock}}</li>
+        <li>{{this.stock}}</li> 
         <li>{{this.description}}</li>
+        <button onclick="removeProduct({{this.id}})">Eliminar Producto</button>
         </div>
         {{/each}}
-
 </div>
 <h1>Agregar Producto</h1>
 
-<form id="formProduct" action="/realtimeproducts/add" method="POST">
+<form id="formProduct">
     <div>
         <label for="name">Name</label>
         <input id="name" type="text" name="name">

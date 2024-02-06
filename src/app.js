@@ -29,6 +29,7 @@ const httpServer = app.listen(port, () =>
 );
 
 export const products = [
+    
 ];
 
 const io = new Server(httpServer);

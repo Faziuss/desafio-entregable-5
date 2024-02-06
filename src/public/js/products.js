@@ -18,7 +18,7 @@ formProduct.addEventListener("submit", async (e) => {
     id: 5,
   });
 
-  formProduct.reset()
+  formProduct.reset();
 });
 
 const productsContainer = d.getElementById("productsContainer");
@@ -28,6 +28,18 @@ socket.on("newProduct", (newProduct) => {
   $element.dataset.id = newProduct.id;
   $element.innerHTML = `<li>${newProduct.name}</li>
     <li>${newProduct.stock}</li>
-    <li>${newProduct.description}</li>`;
+    <li>${newProduct.description}</li>
+    <button onclick="removeProduct(${newProduct.id})">Eliminar Producto</button>`;
+
   productsContainer.appendChild($element);
+});
+
+const removeProduct = async (pid) => {
+  await axios.delete(`/realtimeproducts/remove/${pid}`);
+  console.log(pid, "eliminado con exito");
+};
+
+socket.on("deleteProduct", (id) => {
+  const $product = d.querySelector(`[data-id="${id}"]`);
+  $product.remove();
 });
