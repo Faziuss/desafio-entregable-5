@@ -60,6 +60,8 @@ router.delete("/remove/:pid", (req, res) => {
   const io = req.app.get("io");
   const { pid } = req.params;
 
+  console.log(pid);
+
   const i = products.findIndex((p) => p.id == pid);
 
   if (i === -1) {
@@ -71,7 +73,7 @@ router.delete("/remove/:pid", (req, res) => {
   products.splice(i, 1);
   io.emit("deleteProduct", pid);
 
-  res.send("Producto Eliminado con exito");
+  res.send({status: "sucess", message:"Producto Eliminado con exito"});
 });
 
 export default router;

@@ -6,7 +6,7 @@
       <li>{{this.name}}</li>
       <li>{{this.stock}}</li>
       <li>{{this.description}}</li>
-      <button onclick="removeProduct({{this.id}})">Eliminar Producto</button>
+      <button class="delete-btn" data-deleteId={{this.id}}>Eliminar Producto</button>
     </div>
   {{/each}}
 </div>
@@ -16,17 +16,17 @@
 <form id="formProduct">
   <div>
     <label for="name">Name</label>
-    <input id="name" type="text" name="name" />
+    <input id="name" type="text" name="name" required/>
   </div>
   <br />
   <div>
     <label for="name">Stock</label>
-    <input id="stock" type="number" name="stock" />
+    <input id="stock" type="number" name="stock" required/>
   </div>
   <br />
   <div>
     <label for="name">Description</label>
-    <input id="description" type="text" name="description" />
+    <input id="description" type="text" name="description" required/>
   </div>
   <br />
   <button>Agregar Producto</button>

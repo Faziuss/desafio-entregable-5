@@ -7,22 +7,20 @@ const formProduct = d.getElementById("formProduct");
 formProduct.addEventListener("submit", async (e) => {
   e.preventDefault();
   try {
+    const name = d.getElementById("name").value;
+    const stock = d.getElementById("stock").value;
+    const description = d.getElementById("description").value;
 
-  const name = d.getElementById("name").value;
-  const stock = d.getElementById("stock").value;
-  const description = d.getElementById("description").value;
+    await axios.post("/realtimeproducts/add", {
+      name,
+      stock,
+      description,
+    });
 
-  await axios.post("/realtimeproducts/add", {
-    name,
-    stock: stock,
-    description
-  });
-
-  formProduct.reset();
+    formProduct.reset();
   } catch (error) {
     console.log(error);
   }
-  
 });
 
 const productsContainer = d.getElementById("productsContainer");
@@ -33,14 +31,19 @@ socket.on("newProduct", (newProduct) => {
   $element.innerHTML = `<li>${newProduct.name}</li>
     <li>${newProduct.stock}</li>
     <li>${newProduct.description}</li>
-    <button onclick="removeProduct(${newProduct.id})">Eliminar Producto</button>`;
+    <button class="delete-btn" data-deleteid=${newProduct.id}>Eliminar Producto</button>`;
 
   productsContainer.appendChild($element);
 });
 
+d.addEventListener("click", async (e) => {
+  if(e.target.matches(".delete-btn")){
+    await removeProduct(e.target.dataset.deleteid)
+  }
+})
+
 const removeProduct = async (pid) => {
   await axios.delete(`/realtimeproducts/remove/${pid}`);
-  console.log(pid, "eliminado con exito");
 };
 
 socket.on("deleteProduct", (id) => {
